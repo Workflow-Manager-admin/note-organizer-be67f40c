@@ -2,12 +2,12 @@ import { createClient } from '@supabase/supabase-js';
 
 /**
  * PUBLIC_INTERFACE
- * Create and export the Supabase client using credentials from .env.
- * Uses: REACT_APP_SUPABASE_URL and REACT_APP_SUPABASE_KEY.
+ * Create and export the Supabase client using credentials from environment or manifest.
+ * Uses: SUPABASE_URL and SUPABASE_KEY.
  *
- * To configure, ensure your .env file contains:
- *    REACT_APP_SUPABASE_URL=<your-supabase-project-url>
- *    REACT_APP_SUPABASE_KEY=<your-supabase-anon-or-service-role-key>
+ * To configure, ensure your environment/manifest contains:
+ *    SUPABASE_URL=<your-supabase-project-url>
+ *    SUPABASE_KEY=<your-supabase-anon-or-service-role-key>
  *
  * Both variables are required for Supabase to function.
  *
@@ -17,14 +17,14 @@ import { createClient } from '@supabase/supabase-js';
  *   For direct SQL execution, use Supabase Edge Functions, PostgREST RPCs, or a backend API proxy.
  */
 
-const supabaseUrl = process.env.REACT_APP_SUPABASE_URL;
-const supabaseAnonKey = process.env.REACT_APP_SUPABASE_KEY;
+const supabaseUrl = process.env.SUPABASE_URL;
+const supabaseAnonKey = process.env.SUPABASE_KEY;
 
 if (!supabaseUrl) {
-  throw new Error("Supabase Error: REACT_APP_SUPABASE_URL is required (check your .env file).");
+  throw new Error("Supabase Error: SUPABASE_URL is required (check your environment or manifest file).");
 }
 if (!supabaseAnonKey) {
-  throw new Error("Supabase Error: REACT_APP_SUPABASE_KEY is required (check your .env file).");
+  throw new Error("Supabase Error: SUPABASE_KEY is required (check your environment or manifest file).");
 }
 
 const supabase = createClient(supabaseUrl, supabaseAnonKey);
